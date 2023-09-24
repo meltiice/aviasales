@@ -1,0 +1,65 @@
+@import '../../../public/scss/variables.scss';
+
+.ticket {
+   list-style: none;
+   margin-bottom: 20px;
+   background-color: $backgroundBlocks;
+   padding: 20px;
+   border-radius: $borderRadius;
+   display: grid;
+   grid-template-columns: 1fr 1fr 1fr;
+   grid-template-rows: auto;
+   grid-template-areas: 
+    "price price company "
+    "arrival-time-1 flight-time-1 change-1"
+    "arrival-time-2 flight-time-2 change-2";
+
+   column-gap: 5px;
+   row-gap: 15px;
+   box-shadow: $boxShadow;
+}
+.company {
+   grid-area: company;
+   .flight-company {
+      float: right;
+      width: auto;
+      height: 100%;
+   }
+}
+
+.price {
+   grid-area: price;
+   & span {
+      font-size: 2rem;
+      font-weight: 600;
+      color: $importantColor;
+   }
+}
+.cover {
+   text-transform: uppercase;
+   font-weight: 400;
+   color: $coverColor;
+   margin-bottom: 5px;
+}
+.info {
+   font-size: 14px;
+   font-weight: 400;
+}
+.arrival-time-1 {
+   grid-area: arrival-time-1;
+}
+.arrival-time-2 {
+   grid-area: arrival-time-2;
+}
+.change-1 {
+   grid-area: change-1;
+}
+.change-2 {
+   grid-area: change-2;
+}
+.flight-time-1 {
+   grid-area: flight-time-1;
+}
+.flight-time-2 {
+   grid-area: flight-time-2;
+}

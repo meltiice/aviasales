@@ -1,0 +1,39 @@
+@import '../../../public/scss/variables.scss';
+
+.ticket-filters {
+   height: 50px;
+   display: grid;
+   grid-template-columns: 1fr 1fr 1fr;
+   background-color: $backgroundBlocks;
+   border-radius: $borderRadius;
+   gap: 0;
+   margin-bottom: 20px;
+}
+.ticket-filter {
+   list-style: none;
+   padding: 18px 10px;
+   text-align: center;
+   box-shadow: 0 0 0 1px $lineColor;
+   &:first-child {
+      border-radius: $borderRadius 0 0 $borderRadius;
+   }
+   &:last-child {
+      border-radius: 0 $borderRadius $borderRadius 0;
+   }
+   &.checked, &:hover {
+      background-color: $importantColor;
+      color: white;
+      box-shadow:  -1px 0 0 1px $importantColor,
+                  0px 0 0 0px $importantColor;
+   }
+   button {
+      background: none;
+      color: inherit;
+      border: none;
+      padding: 0;
+      font: inherit;
+      cursor: pointer;
+      outline: inherit;
+      text-transform: uppercase;
+   }
+}

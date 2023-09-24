@@ -1,0 +1,18 @@
+@import '../../../public/scss/variables.scss';
+
+.logo {
+   width: $logoWidth;
+   height: 80px;
+   @media (min-width: $layoutBreakpoint) {
+      width: 100%;
+      height: $logoWidth;
+      padding: 0 calc(50% - ($logoWidth / 2));
+   }
+}
+
+.icon {
+   width: 100%;
+   @media (min-width: $layoutBreakpoint) {
+      width: $logoWidth;
+   }
+}

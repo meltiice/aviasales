@@ -1,0 +1,77 @@
+@import '../../../public/scss/variables.scss';
+
+.transfer-filter {
+   width: calc(100% - $logoWidth);
+   height: 90px;
+   padding: 14px 18px;
+   background-color: $backgroundBlocks;
+   border-radius: 5px;
+   box-shadow: $boxShadow;
+
+   @media (min-width: $layoutBreakpoint) {
+      width: calc(30% - 10px);
+      height: 250px;
+      padding: 20px 0;
+   }
+}
+.filters {
+   width: 100%;
+   height: 40px;
+   display: flex;
+   flex-direction: column;
+   margin-top: 5px;
+   flex-wrap: wrap;
+   column-gap: 10px;
+   @media (min-width: $layoutBreakpoint) {
+      height: auto;
+   }
+}
+.filter {
+   padding: 3px 10px 4px 0;
+   height: 20px;
+   &:hover{
+      background-color: $filterHoverColor;
+   }
+   input {
+      margin-right: 5px;
+      position: absolute;
+      z-index: -1;
+      opacity: 0;
+      &+span {
+         display: inline-flex;
+         align-items: center;
+         user-select: none;
+       }
+      &+span::before {
+         content: '';
+         display: inline-block;
+         width: 1em;
+         height: 1em;
+         flex-shrink: 0;
+         flex-grow: 0;
+         border: 1px solid $notImportantColor;
+         border-radius: 0.25em;
+         margin-right: 0.5em;
+         background-repeat: no-repeat;
+         background-position: center center;
+         background-size: 50% 50%;
+       }
+       &:checked+span::before {
+         border-color: $importantColor;
+         background-color: $importantColor;
+         background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%23fff' d='M6.564.75l-3.59 3.612-1.538-1.55L0 4.26 2.974 7.25 8 2.193z'/%3e%3c/svg%3e");
+       }
+   }
+   @media (min-width: $layoutBreakpoint) {
+      margin: 0;
+      padding: 10px 20px 24px 20px;
+   }
+}
+.transfer-label {
+   height: auto;
+   text-transform: uppercase;
+   font-weight: 500;
+   @media (min-width: $layoutBreakpoint) {
+      padding: 0 20px;
+   }
+}
