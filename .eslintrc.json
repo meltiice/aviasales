@@ -11,6 +11,8 @@
       "no-param-reassign": "off",
       "react-hooks/rules-of-hooks": "off",
       "import/prefer-default-export": "off",
+      "import/no-extraneous-dependencies": "off",
+      "no-underscore-dangle": "off",
       "default-param-last": "off",
       "comma-dangle": 0,
       "react/jsx-uses-vars": 1,

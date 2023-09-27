@@ -1,4 +1,5 @@
-import { CHEAPEST, FASTEST, OPTIMAL, TRANSFER_1, TRANSFER_2, TRANSFER_3, TRANSFER_ALL, TRANSFER_ALL_LISTENER, TRANSFER_NO } from './types';
+import { FETCH_URL, FETCH_TICKET, CHEAPEST, FASTEST, OPTIMAL,
+   TRANSFER_1, TRANSFER_2, TRANSFER_3, TRANSFER_ALL, TRANSFER_ALL_LISTENER, TRANSFER_NO } from './types';
 
 export function choseCheapest() {
    return {
@@ -54,6 +55,46 @@ export function transferAllListener() {
    }
 }
 
+async function getResource(url) {
+   const result = await fetch(url);
+
+      if (!result.ok) {
+         throw new Error(`Could not fetch ${url}, received ${result.status}`);
+      }
+
+      return result.json();
+}
+
+export function getSearchId(data) {
+   return {
+      type: FETCH_URL,
+      data
+   }
+}
+
+export function getTickets(tickets) {
+   return {
+      type: FETCH_TICKET,
+      tickets
+   }
+}
+
+export function asyncFetch(url) {
+   return (dispatch) => {
+      getResource(`${url}/search`)
+      .then((res) => {
+         const id = dispatch(getSearchId(res));
+         return id
+      })
+      .then((res) => {
+         const result = getResource(`${url}/tickets?searchId=${res.data.searchId}`);
+         return result
+      })
+      .then((res) => {
+         dispatch(getTickets(res))
+      })
+   }
+}
 /*
 export function filterTickets(data) {
    return {
