@@ -30,8 +30,8 @@ const Ticket = (props) => {
   }
 
   const formatTime = (date, duration) => {
-    const startTime = format(new Date(date), 'hh:mm')
-    const finishTime = format(add(new Date(date), { minutes: duration }), 'hh:mm')
+    const startTime = format(new Date(date), 'HH:mm')
+    const finishTime = format(add(new Date(date), { minutes: duration }), 'HH:mm')
     return `${startTime} - ${finishTime}`
   }
 
