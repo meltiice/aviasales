@@ -10,6 +10,8 @@
       "prefer-const": "off",
       "no-param-reassign": "off",
       "react-hooks/rules-of-hooks": "off",
+      "import/prefer-default-export": "off",
+      "default-param-last": "off",
       "comma-dangle": 0,
       "react/jsx-uses-vars": 1,
       "react/display-name": 1,

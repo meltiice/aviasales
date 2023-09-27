@@ -1,4 +1,3 @@
-import React from 'react';
 import classes from './logo.module.scss';
 
 import icon from './Logo.png'

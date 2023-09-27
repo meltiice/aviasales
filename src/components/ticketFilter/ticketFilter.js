@@ -1,19 +1,50 @@
-import React from 'react';
+import { useDispatch, useSelector } from 'react-redux'
+import { choseCheapest, choseFastest, choseOptimal } from '../../redux/actions';
 
 import classes from './ticketFilter.module.scss'
+import { FASTEST, OPTIMAL } from '../../redux/types';
 
-const TicketFilter = () => (
+const TicketFilter = (props) => {
+  const sorted = useSelector((state) => {
+    const { sortedBy } = state;
+    return sortedBy;
+  })
+
+  const dispatch = useDispatch();
+  const sortingChange = (sortedBy) => {
+    switch (sortedBy) {
+      case OPTIMAL: {
+        dispatch(choseOptimal('OPTIMAL'));
+        break
+      }
+      case FASTEST: {
+        dispatch(choseFastest('FASTEST'));
+        break
+      }
+      default: {
+        dispatch(choseCheapest('CHEAPEST'))
+        break;
+      }
+    }
+  }
+  const arrayOfNamesForBtns = {
+    CHEAPEST: 'Самый дешёвый',
+    FASTEST: 'Самый быстрый',
+    OPTIMAL: 'Оптимальный'
+  };
+  const filters = Object.keys(arrayOfNamesForBtns).map((btn) => (
+    <li key ={btn} className={sorted === btn ? `${classes['ticket-filter']} ${classes.selected}` : classes['ticket-filter']}>
+      <button onClick={() => sortingChange(btn)} className={classes.button}>
+        {arrayOfNamesForBtns[btn]}
+      </button>
+    </li>
+  ))
+
+  return (
    <ul className={classes['ticket-filters']}>
-    <li className={classes['ticket-filter']}>
-      <button>Самый дешевый</button>
-    </li>
-    <li className={classes['ticket-filter']}>
-      <button>Самый быстрый</button>
-    </li>
-    <li className={classes['ticket-filter']}>
-      <button>Оптимальный</button>
-    </li>
+    {filters}
    </ul>
  )
+}
 
 export default TicketFilter;

@@ -1,4 +1,3 @@
-import React from 'react';
 import classes from './ticketsView.module.scss';
 
 import TicketFilter from '../ticketFilter'

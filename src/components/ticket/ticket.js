@@ -1,4 +1,3 @@
-import React from 'react';
 import classes from './ticket.module.scss'
 import logo from './Logo.png'
 

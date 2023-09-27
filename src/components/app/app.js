@@ -1,4 +1,3 @@
-import React from 'react';
 import classes from './app.module.scss'
 
 import Logo from '../logo'
