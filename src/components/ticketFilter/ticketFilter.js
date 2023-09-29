@@ -4,7 +4,7 @@ import { choseCheapest, choseFastest, choseOptimal } from '../../redux/actions';
 import classes from './ticketFilter.module.scss'
 import { FASTEST, OPTIMAL } from '../../redux/types';
 
-const TicketFilter = (props) => {
+const TicketFilter = () => {
   const sorted = useSelector((state) => {
     const { sortedBy } = state;
     return sortedBy;

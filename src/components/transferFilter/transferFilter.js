@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux'
-import { transferAll, transferNo, transferOne, transferTwo, transferThree, transferAllListener } from '../../redux/actions';
+import { transferAll, transferNo, transferOne, transferTwo, transferThree } from '../../redux/actions';
 import classes from './transferFilter.module.scss'
 import { TRANSFER_1, TRANSFER_2, TRANSFER_3, TRANSFER_NO } from '../../redux/types';
 

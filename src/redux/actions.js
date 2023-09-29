@@ -1,5 +1,6 @@
-import { FETCH_URL, FETCH_TICKET, CHEAPEST, FASTEST, OPTIMAL,
-   TRANSFER_1, TRANSFER_2, TRANSFER_3, TRANSFER_ALL, TRANSFER_ALL_LISTENER, TRANSFER_NO } from './types';
+import { FETCH_URL, FETCH_TICKET, CHEAPEST, FASTEST, OPTIMAL, LOADER_OFF, LOADER_ON,
+   TRANSFER_1, TRANSFER_2, TRANSFER_3, TRANSFER_ALL, TRANSFER_NO, LOAD_PAGES } from './types';
+import Service from '../components/service';
 
 export function choseCheapest() {
    return {
@@ -49,22 +50,6 @@ export function transferAll() {
    }
 }
 
-export function transferAllListener() {
-   return {
-      type: TRANSFER_ALL_LISTENER
-   }
-}
-
-async function getResource(url) {
-   const result = await fetch(url);
-
-      if (!result.ok) {
-         throw new Error(`Could not fetch ${url}, received ${result.status}`);
-      }
-
-      return result.json();
-}
-
 export function getSearchId(data) {
    return {
       type: FETCH_URL,
@@ -79,27 +64,40 @@ export function getTickets(tickets) {
    }
 }
 
-export function asyncFetch(url) {
-   return (dispatch) => {
-      getResource(`${url}/search`)
-      .then((res) => {
-         const id = dispatch(getSearchId(res));
-         return id
-      })
-      .then((res) => {
-         const result = getResource(`${url}/tickets?searchId=${res.data.searchId}`);
-         return result
-      })
-      .then((res) => {
-         dispatch(getTickets(res))
-      })
-   }
-}
-/*
-export function filterTickets(data) {
+export function loaderOff() {
    return {
-      type: FILTER,
-      data
+      type: LOADER_OFF
    }
 }
- */
+
+export function loaderOn() {
+   return {
+      type: LOADER_ON
+   }
+}
+
+export function loadPages() {
+   return {
+      type: LOAD_PAGES
+   }
+}
+
+export const ticketsLoad = () => {
+   const service = new Service();
+   return async (dispatch) => {
+      dispatch(loaderOn());
+      const id = await service.getId();
+      const data = await service.getInfo(id);
+      let { tickets, stop } = data;
+      const jsonData = tickets;
+      dispatch(getTickets(jsonData));
+      while (!stop) {
+         dispatch(loaderOn());
+         const newData = await service.getInfo(id);
+         jsonData.push(...newData.tickets);
+         stop = newData.stop
+      }
+      dispatch(getTickets(jsonData));
+      dispatch(loaderOff());
+   }
+}

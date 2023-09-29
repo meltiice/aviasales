@@ -1,11 +1,11 @@
-import { TRANSFER_1, TRANSFER_2, TRANSFER_3, TRANSFER_ALL, TRANSFER_NO, TRANSFER_ALL_LISTENER } from './types';
+import { TRANSFER_1, TRANSFER_2, TRANSFER_3, TRANSFER_ALL, TRANSFER_NO } from './types';
 
 const initialState = {
-   TRANSFER_ALL: false,
-   TRANSFER_1: false,
-   TRANSFER_2: false,
-   TRANSFER_3: false,
-   TRANSFER_NO: false
+   TRANSFER_ALL: true,
+   TRANSFER_1: true,
+   TRANSFER_2: true,
+   TRANSFER_3: true,
+   TRANSFER_NO: true
 }
 
 const switchAll = (transfers) => {
@@ -54,9 +54,6 @@ export const transferReducer = (state = initialState, action) => {
             TRANSFER_3: !all,
             TRANSFER_NO: !all
          }
-      case TRANSFER_ALL_LISTENER:
-         console.log('listener')
-         return state
       default:
          return state;
    }

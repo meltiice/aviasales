@@ -9,6 +9,8 @@
       "no-plusplus": "off",
       "prefer-const": "off",
       "no-param-reassign": "off",
+      "max-len": "off",
+      "no-await-in-loop": "off",
       "react-hooks/rules-of-hooks": "off",
       "import/prefer-default-export": "off",
       "import/no-extraneous-dependencies": "off",

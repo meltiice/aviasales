@@ -6,7 +6,11 @@ import logo from './Logo.png';
 const Ticket = (props) => {
   const { price, carrier, dataTo, dataBack } = props;
 
-  const formatPrice = (priceFlight) => `${Math.trunc(priceFlight / 1000)} ${priceFlight % 1000} P`;
+  const formatPrice = (priceFlight) => {
+    const firstPart = Math.trunc(priceFlight / 1000);
+    const secondPart = priceFlight % 1000 >= 100 ? `${priceFlight % 1000}` : `${(3 - String(priceFlight % 1000).length) * '0'}${priceFlight % 1000}`
+    return `${firstPart} ${secondPart} P`
+  };
 
   const formatDuration = (time) => `${Math.trunc(time / 60)}ч ${time % 60}м`;
 
@@ -35,6 +39,8 @@ const Ticket = (props) => {
     return `${startTime} - ${finishTime}`
   }
 
+  const linkPic = carrier ? `https://pics.avs.io/99/36/${carrier}.png` : logo;
+
   return (
     <ul className={classes['tickets-list']}>
       <li className={classes.ticket}>
@@ -42,7 +48,7 @@ const Ticket = (props) => {
           <span>{formatPrice(price)}</span>
         </div>
         <div className={classes.company}>
-          <img className={classes['flight-company']} src={logo} />
+          <img className={classes['flight-company']} src={linkPic} />
         </div>
         <div className={classes['arrival-time-1']}>
           <div className={classes.cover}>{dataTo.origin} - {dataTo.destination}</div>
