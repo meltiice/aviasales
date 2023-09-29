@@ -3,7 +3,6 @@ import classes from './loadMoreButton.module.scss';
 import { loadPages } from '../../redux/actions';
 
 const LoadMoreButton = () => {
-   console.log('button')
    const dispatch = useDispatch();
    const loadMore = () => {
       dispatch(loadPages());
