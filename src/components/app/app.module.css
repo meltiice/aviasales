@@ -104,3 +104,44 @@
   src: local("Open Sans Semibold"), local("OpenSans-Semibold"), url(https://fonts.gstatic.com/s/opensans/v13/MTP_ySUJH_bn48VBG8sNSugdm0LZdjqr5-oayXSOefg.woff2) format("woff2");
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
 }
+@import-normalize;
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  font-weight: 300;
+  font-family: "Open Sans", serif;
+  font-size: 12px;
+}
+
+body {
+  width: 100%;
+  height: 100vh;
+}
+
+.app {
+  width: 100%;
+  min-height: 100vh;
+  padding: 5%;
+  height: auto;
+  background-color: #F3F7FA;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0;
+  font-size: 12px;
+}
+@media (min-width: 850px) {
+  .app {
+    gap: 20px;
+    padding: 30px 10%;
+  }
+}
+@media (min-width: 1125px) {
+  .app {
+    padding: 30px 20%;
+  }
+}
+
+.app-active {
+  background-color: blue !important;
+}
